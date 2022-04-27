@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Navbar } from "@components/common";
+import { Navbar, Footer } from "@components/common";
 import s from "./Layout.module.css";
 
 interface IProps {
@@ -10,7 +10,8 @@ const Layout: FC<IProps> = ({ children }) => {
   return (
     <>
       <Navbar />
-      <main>{children}</main>
+      <main className={s.root}>{children}</main>
+      <Footer />
     </>
   );
 };

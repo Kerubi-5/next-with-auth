@@ -1,0 +1,3 @@
+.root {
+  @apply min-h-screen pt-[4.5rem] pb-[1rem] px-4;
+}
