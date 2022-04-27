@@ -1,6 +1,7 @@
+import { Layout } from "@components/common";
 import type { NextPage } from "next";
 
-const Home: NextPage = () => {
+const Home = () => {
   return (
     <div>
       Hello
@@ -10,5 +11,7 @@ const Home: NextPage = () => {
     </div>
   );
 };
+
+Home.Layout = Layout;
 
 export default Home;
