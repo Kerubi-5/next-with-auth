@@ -1,15 +1,28 @@
-import { FC, FormHTMLAttributes, ReactNode } from "react";
+import {
+  FormHTMLAttributes,
+  forwardRef,
+  ForwardRefRenderFunction,
+  ReactNode,
+  RefObject,
+} from "react";
 
 interface Props extends FormHTMLAttributes<HTMLFormElement> {
   children: ReactNode | ReactNode[];
 }
 
-const Form: FC<Props> = ({ children, ...rest }) => {
+type Ref = HTMLFormElement;
+
+const Form: ForwardRefRenderFunction<Ref, Props> = (
+  { children, ...rest },
+  ref
+) => {
   return (
-    <form {...rest}>
+    <form ref={ref} {...rest}>
       <div className="max-w-md mx-auto">{children}</div>
     </form>
   );
 };
 
-export default Form;
+const forwaredForm = forwardRef(Form);
+
+export default forwaredForm;
