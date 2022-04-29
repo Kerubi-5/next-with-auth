@@ -1,11 +1,11 @@
 import { FC, ReactNode } from "react";
-
+import s from "./TodoCard.module.css";
 interface IProps {
   children: ReactNode | ReactNode[];
 }
 
 const TodoCard: FC<IProps> = ({ children }) => {
-  return <div className="p-5 border-2 border-black rounded-lg">{children}</div>;
+  return <div className={s.root}>{children}</div>;
 };
 
 export default TodoCard;

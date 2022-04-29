@@ -1,5 +1,5 @@
 .root {
-  @apply flex items-center;
+  @apply flex items-center bg-gray-50 p-4 rounded-md shadow;
 }
 
 .details {
@@ -12,14 +12,32 @@
   }
 
   & .title {
-    @apply text-xl font-bold;
+    @apply text-lg font-bold text-transparent bg-clip-text bg-gradient-to-br from-cyan-500 to-blue-500;
+
+    &screen md {
+      & {
+        @apply text-xl;
+      }
+    }
   }
 
   & .description {
-    @apply text-gray-600 text-sm text-justify;
+    @apply text-gray-600 text-xs text-justify;
+
+    @screen md {
+      & {
+        @apply text-sm;
+      }
+    }
   }
 }
 
 .buttons {
-  @apply flex gap-2;
+  @apply flex flex-col gap-4;
+
+  @screen md {
+    & {
+      @apply flex-row gap-2;
+    }
+  }
 }

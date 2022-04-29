@@ -20,8 +20,10 @@ const Home = ({
   return (
     <>
       <div>
-        <h1>Home</h1>
         <TodoContainer>
+          <TodoItem />
+          <TodoItem />
+          <TodoItem />
           <TodoItem />
         </TodoContainer>
       </div>
