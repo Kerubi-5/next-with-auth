@@ -3,7 +3,13 @@
 }
 
 .details {
-  @apply flex-grow px-3;
+  @apply flex-grow px-4;
+
+  @screen md {
+    & {
+      @apply px-6;
+    }
+  }
 
   & .title {
     @apply text-xl font-bold;
@@ -11,12 +17,6 @@
 
   & .description {
     @apply text-gray-600 text-sm text-justify;
-  }
-}
-
-@screen md {
-  .details {
-    @apply px-6;
   }
 }
 
