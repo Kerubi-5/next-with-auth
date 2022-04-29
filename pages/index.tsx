@@ -1,10 +1,11 @@
 import { Layout } from "@components/common";
 import { InferGetServerSidePropsType } from "next";
-import { fetchApi } from "@framework/utils";
 import { TodoContainer } from "@components/todo";
 import TodoItem from "@components/todo/TodoItem/TodoItem";
+import { useHook } from "@framework/utils";
 export async function getServerSideProps() {
-  const todos = await fetchApi();
+  const todos = await useHook.todo.useTodo();
+
   return {
     props: {
       todos,
