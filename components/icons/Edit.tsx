@@ -1,7 +1,7 @@
 const Edit = () => {
   return (
     <svg
-      fill="#00b8c2"
+      fill="#60a5fa"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       width="24px"
