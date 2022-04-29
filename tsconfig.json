@@ -16,7 +16,10 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
+      "@components": ["components"],
       "@components/*": ["components/*"],
+      "@framework": ["framework/express"],
+      "@framework/*": ["framework/express/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
