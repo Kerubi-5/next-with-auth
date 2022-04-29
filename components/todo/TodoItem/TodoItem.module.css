@@ -1,0 +1,25 @@
+.root {
+  @apply flex items-center;
+}
+
+.details {
+  @apply flex-grow px-3;
+
+  & .title {
+    @apply text-xl font-bold;
+  }
+
+  & .description {
+    @apply text-gray-600 text-sm text-justify;
+  }
+}
+
+@screen md {
+  .details {
+    @apply px-6;
+  }
+}
+
+.buttons {
+  @apply flex gap-2;
+}
