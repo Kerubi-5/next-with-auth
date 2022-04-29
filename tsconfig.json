@@ -16,6 +16,7 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
+      "@common/*": ["framework/common/*"],
       "@components": ["components"],
       "@components/*": ["components/*"],
       "@framework": ["framework/express"],
