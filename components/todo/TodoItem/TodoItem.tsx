@@ -1,4 +1,4 @@
-import { Edit, Trash } from "@components/icons";
+import { UilPen, UilTrash } from "@iconscout/react-unicons";
 import s from "./TodoItem.module.css";
 
 const TodoItem = () => {
@@ -15,8 +15,8 @@ const TodoItem = () => {
         </p>
       </div>
       <div className={s.buttons}>
-        <button>{<Edit />}</button>
-        <button>{<Trash />}</button>
+        <button>{<UilPen className="text-[#60a5fa]" />}</button>
+        <button>{<UilTrash className="text-[#60a5fa]" />}</button>
       </div>
     </div>
   );
