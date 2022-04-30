@@ -13,7 +13,9 @@ const Login = () => {
 
   return (
     <Form ref={loginRef} method="POST" onSubmit={(e) => handleSubmit(e)}>
-      <h1 className="text-center text-2xl font-bold">Login Form</h1>
+      <h1 className="text-center text-2xl font-bold text-gradient">
+        Login Form
+      </h1>
       <Input label="Email" name="email" type="email" icon={UilAt} />
       <Input label="Password" name="password" type="password" icon={UilLock} />
 

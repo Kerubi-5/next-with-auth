@@ -9,7 +9,9 @@ const Register = () => {
 
   return (
     <Form method="POST" action="http://localhost:8080/api/auth/login">
-      <h1 className="text-center text-2xl font-bold">Registration Form</h1>
+      <h1 className="text-center text-2xl font-bold text-gradient">
+        Registration Form
+      </h1>
       <Input label="Name" name="name" icon={UilUser} />
       <Input
         label="Email"
