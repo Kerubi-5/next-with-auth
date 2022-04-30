@@ -1,1 +1,2 @@
-export { default as TodoContainer } from "./TodoCard";
+export { default as TodoCard } from "./TodoCard";
+export { default as TodoItem } from "./TodoItem";

@@ -1,0 +1,7 @@
+.root {
+  @apply bg-gray-100 rounded-full w-6 h-6 relative cursor-pointer;
+}
+
+.checkBox {
+  @apply text-blue-500 absolute inset-0;
+}

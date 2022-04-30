@@ -1,11 +1,22 @@
 import { UilPen, UilTrash } from "@iconscout/react-unicons";
 import s from "./TodoItem.module.css";
+import { Toggle } from "@components/ui";
+import { useEffect, useState } from "react";
 
 const TodoItem = () => {
+  const [isComplete, setIsComplete] = useState(false);
+
+  useEffect(() => {
+    console.log(isComplete);
+  }, [isComplete]);
+
   return (
     <div className={s.root}>
       <div>
-        <input type="checkbox" />
+        <Toggle
+          checked={isComplete}
+          onClick={() => setIsComplete(!isComplete)}
+        />
       </div>
       <div className={s.details}>
         <h3 className={s.title}>Item</h3>

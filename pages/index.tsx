@@ -1,7 +1,6 @@
 import { Layout } from "@components/common";
 import { InferGetServerSidePropsType } from "next";
-import { TodoContainer } from "@components/todo";
-import TodoItem from "@components/todo/TodoItem/TodoItem";
+import { TodoCard, TodoItem } from "@components/todo";
 import { useHook } from "@framework/utils";
 export async function getServerSideProps() {
   const todos = await useHook.todo.useTodo();
@@ -21,12 +20,12 @@ const Home = ({
   return (
     <>
       <div>
-        <TodoContainer>
+        <TodoCard>
           <TodoItem />
           <TodoItem />
           <TodoItem />
           <TodoItem />
-        </TodoContainer>
+        </TodoCard>
       </div>
     </>
   );
