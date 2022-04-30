@@ -1,14 +1,12 @@
 import { UilPen, UilTrash } from "@iconscout/react-unicons";
 import s from "./TodoItem.module.css";
 import { Toggle } from "@components/ui";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const TodoItem = () => {
   const [isComplete, setIsComplete] = useState(false);
 
-  useEffect(() => {
-    console.log(isComplete);
-  }, [isComplete]);
+  const strikeThrough = isComplete && "line-through";
 
   return (
     <div className={s.root}>
@@ -18,7 +16,7 @@ const TodoItem = () => {
           onClick={() => setIsComplete(!isComplete)}
         />
       </div>
-      <div className={s.details}>
+      <div className={`${s.details} ${strikeThrough}`}>
         <h3 className={s.title}>Item</h3>
         <p className={s.description}>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere,
