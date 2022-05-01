@@ -9,6 +9,32 @@ const Login = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
+    const email = loginRef.current?.email.value;
+    const password = loginRef.current?.password.value;
+
+    console.log(email, password);
+
+    if (!email || !password) return alert("Complete please");
+
+    const loginMutation = async () => {
+      const res = await fetch("http://localhost:8080/api/auth/login", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Access-Control-Allow-Credentials": "http://localhost:3000",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (res.status === 200) {
+        alert("Login success");
+      }
+      console.log(res);
+    };
+
+    loginMutation();
   };
 
   return (
