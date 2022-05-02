@@ -13,21 +13,27 @@ export const todoSlice = createSlice({
   name: "todo",
   initialState,
   reducers: {
-    populateTodos: (state, payload: PayloadAction<Todo[]>) => {
-      state.todos = payload.payload;
+    populateTodos: (state, action: PayloadAction<Todo[]>) => {
+      state.todos = action.payload;
     },
-    addTodo: (state, payload: PayloadAction<Todo>) => {
-      state.todos.push(payload.payload);
+    addTodo: (state, action: PayloadAction<Todo>) => {
+      state.todos.push(action.payload);
     },
-    removeTodo: (state, payload: PayloadAction<Todo>) => {
+    removeTodo: (state, action: PayloadAction<Todo>) => {
       state.todos = state.todos.filter(
-        (todo) => todo._id !== payload.payload._id
+        (todo) => todo._id !== action.payload._id
+      );
+    },
+    updateTodo: (state, action: PayloadAction<Todo>) => {
+      state.todos = state.todos.map((todo) =>
+        todo._id === action.payload._id ? action.payload : todo
       );
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { populateTodos, addTodo, removeTodo } = todoSlice.actions;
+export const { populateTodos, addTodo, removeTodo, updateTodo } =
+  todoSlice.actions;
 
 export default todoSlice.reducer;
