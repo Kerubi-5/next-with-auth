@@ -4,8 +4,12 @@ import { TodoCard, TodoItem } from "@components/todo";
 import { useHook } from "@framework/utils";
 import { Todo } from "@common/types/todo";
 import { Button, Modal } from "@components/ui";
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { Form, Input } from "@components/form";
+import { useSelector, useDispatch } from "react-redux";
+import { populateTodos, addTodo } from "@store/todo/todoSlice";
+import { selectTodos } from "@store";
+
 export async function getServerSideProps() {
   const todo = useHook.todo;
 
@@ -23,6 +27,8 @@ const Home = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const todoForm = useRef<HTMLFormElement>(null);
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+  const todoList = useSelector(selectTodos);
 
   const createTodo = (e: FormEvent) => {
     e.preventDefault();
@@ -38,10 +44,19 @@ const Home = ({
       const create = await todo.useAddTodo();
 
       const res = await create({ title, description });
+
+      if (res) {
+        dispatch(addTodo(res));
+        setOpen(false);
+      }
     };
 
     createTodoItem();
   };
+
+  useEffect(() => {
+    dispatch(populateTodos(todos));
+  }, [dispatch, todos]);
 
   return (
     <>
@@ -69,7 +84,7 @@ const Home = ({
       </Modal>
       <div>
         <TodoCard>
-          {todos.map((todo) => (
+          {todoList.map((todo) => (
             <TodoItem key={todo._id} todo={todo} />
           ))}
         </TodoCard>

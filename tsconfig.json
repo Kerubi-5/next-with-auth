@@ -21,6 +21,8 @@
       "@components/*": ["components/*"],
       "@framework": ["framework/express"],
       "@framework/*": ["framework/express/*"],
+      "@store": ["store"],
+      "@store/*": ["store/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

@@ -5,7 +5,8 @@ import { useState, FC, useRef, FormEvent } from "react";
 import { Todo } from "@common/types/todo";
 import { useHook } from "@framework/utils";
 import { Form, Input } from "@components/form";
-
+import { useDispatch } from "react-redux";
+import { removeTodo } from "@store/todo/todoSlice";
 interface ITodoItem {
   todo: Todo;
 }
@@ -18,6 +19,7 @@ const TodoItem: FC<ITodoItem> = ({ todo }) => {
   const [title, setTitle] = useState(todo.title);
   const [description, setDescription] = useState(todo.description);
   const strikeThrough = isComplete && "line-through";
+  const dispatch = useDispatch();
 
   const deleteItem = () => {
     const deleteTodo = async () => {
@@ -26,7 +28,9 @@ const TodoItem: FC<ITodoItem> = ({ todo }) => {
 
       const res = await removeItem(idQuery);
 
-      console.log(res);
+      if (res) {
+        dispatch(removeTodo(res));
+      }
     };
 
     deleteTodo();
