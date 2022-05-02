@@ -2,7 +2,7 @@ import { Layout } from "@components/common";
 import { Form, Input } from "@components/form";
 import { Button } from "@components/ui";
 import { UilAt, UilUser, UilLock } from "@iconscout/react-unicons";
-import { useRef } from "react";
+import { Router } from "next/router";
 
 const Register = () => {
   const handleSubmit = () => {};

@@ -7,7 +7,7 @@ const options = {
 
 export const handler = {
   useHook: () => {
-    return async () => {
+    return () => {
       return async (input: any) => {
         const response = await fetchApi(options, input);
 

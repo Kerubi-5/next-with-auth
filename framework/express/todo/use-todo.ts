@@ -8,7 +8,8 @@ const options = {
 export const handler = {
   useHook: () => {
     return async () => {
-      const response = await fetchApi(options);
+      const query: any = {};
+      const response = await fetchApi(options, query);
 
       return response;
     };

@@ -5,12 +5,16 @@ type Props = {
   method: any;
 };
 
-const fetchApi = async (
-  { endPoint, method }: Props,
-  input?: any | undefined
-) => {
+type Input = {
+  id?: string;
+  input?: any;
+};
+
+const fetchApi = async ({ endPoint, method }: Props, { id, input }: Input) => {
   const apiEndPoint = endPoint || "";
-  const res = await fetch(API_URL! + apiEndPoint, {
+  const idQuery = id || "";
+
+  const res = await fetch(API_URL! + apiEndPoint + idQuery, {
     method,
     credentials: "include",
     headers: {
