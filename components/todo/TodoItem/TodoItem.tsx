@@ -1,9 +1,14 @@
 import { UilPen, UilTrash } from "@iconscout/react-unicons";
 import s from "./TodoItem.module.css";
 import { Toggle } from "@components/ui";
-import { useState } from "react";
+import { useState, FC } from "react";
+import { Todo } from "@common/types/todo";
 
-const TodoItem = () => {
+interface ITodoItem {
+  todo: Todo;
+}
+
+const TodoItem: FC<ITodoItem> = ({ todo }) => {
   const [isComplete, setIsComplete] = useState(false);
 
   const strikeThrough = isComplete && "line-through";
@@ -17,11 +22,8 @@ const TodoItem = () => {
         />
       </div>
       <div className={`${s.details} ${strikeThrough}`}>
-        <h3 className={s.title}>Item</h3>
-        <p className={s.description}>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere,
-          quidem.
-        </p>
+        <h3 className={s.title}>{todo.title}</h3>
+        <p className={s.description}>{todo.description}</p>
       </div>
       <div className={s.buttons}>
         <button>{<UilPen className="text-[#60a5fa]" />}</button>
