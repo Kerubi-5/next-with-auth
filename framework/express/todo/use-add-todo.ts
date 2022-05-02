@@ -9,7 +9,10 @@ export const handler = {
   useHook: () => {
     return () => {
       return async (input: any) => {
-        const response = await fetchApi(options, input);
+        const query = {
+          input,
+        };
+        const response = await fetchApi(options, query);
 
         return response;
       };
