@@ -2,9 +2,14 @@ import { Layout } from "@components/common";
 import { Input, Form } from "@components/form";
 import { Button } from "@components/ui";
 import { UilAt, UilLock } from "@iconscout/react-unicons";
+import { useRouter } from "next/router";
 import { FormEvent, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "@store/user/userSlice";
 
 const Login = () => {
+  const router = useRouter();
+  const dispatch = useDispatch();
   const loginRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = (e: FormEvent) => {
@@ -12,8 +17,6 @@ const Login = () => {
 
     const email = loginRef.current?.email.value;
     const password = loginRef.current?.password.value;
-
-    console.log(email, password);
 
     if (!email || !password) return alert("Complete please");
 
@@ -30,8 +33,11 @@ const Login = () => {
 
       if (res.status === 200) {
         alert("Login success");
+        const { data } = await res.json();
+        dispatch(login(data));
+
+        router.push("/");
       }
-      console.log(res);
     };
 
     loginMutation();

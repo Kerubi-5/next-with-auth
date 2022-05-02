@@ -6,14 +6,14 @@ import { Todo } from "@common/types/todo";
 import { Button, Modal } from "@components/ui";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addTodo, populateTodos } from "@store/todo/todoSlice";
-import { selectTodos } from "@store";
+import { populateTodos } from "@store/todo/todoSlice";
+import { selectTodos, selectUser } from "@store";
 import { METHODS } from "@common/types/methods";
-import { openModal, populateModal } from "@store/ui/uiSlice";
+import { openModal } from "@store/ui/uiSlice";
+import Link from "next/link";
 
 export async function getServerSideProps() {
   const todo = useHook.todo;
-
   const todos = (await todo.useTodo()) as Todo[];
 
   return {
@@ -28,6 +28,7 @@ const Home = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const dispatch = useDispatch();
   const todoList = useSelector(selectTodos);
+  const { token } = useSelector(selectUser);
 
   const addTodoItem = () => {
     dispatch(openModal(METHODS.POST));
@@ -36,6 +37,17 @@ const Home = ({
   useEffect(() => {
     dispatch(populateTodos(todos));
   }, [dispatch, todos]);
+
+  if (!token) {
+    return (
+      <div>
+        Go to{" "}
+        <Link href="/auth/login">
+          <a className="font-bold text-blue-500">Login</a>
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <>
