@@ -1,5 +1,6 @@
 import { ApiHook } from "@common/types/hooks";
 import { handler as useTodo } from "@framework/todo/use-todo";
+import { handler as useAddTodo } from "@framework/todo/use-add-todo";
 
 const expressHooks: ApiHook = {
   auth: {
@@ -8,7 +9,7 @@ const expressHooks: ApiHook = {
   },
   todo: {
     useTodo: useTodo.useHook(),
-    useAddTodo: "useAdd",
+    useAddTodo: useAddTodo.useHook(),
     useRemoveTodo: "useRemove",
     useUpdateTodo: "useUpdate",
   },

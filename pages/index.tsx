@@ -4,7 +4,7 @@ import { TodoCard, TodoItem } from "@components/todo";
 import { useHook } from "@framework/utils";
 import { Todo } from "@common/types/todo";
 import { Button, Modal } from "@components/ui";
-import { useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import { Form, Input } from "@components/form";
 export async function getServerSideProps() {
   const todo = useHook.todo;
@@ -21,10 +21,26 @@ export async function getServerSideProps() {
 const Home = ({
   todos,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const todoForm = useRef<HTMLFormElement>(null);
   const [open, setOpen] = useState(false);
 
-  const createTodo = () => {
-    const useAddTodo = useHook.todo.useAddTodo();
+  const createTodo = (e: FormEvent) => {
+    e.preventDefault();
+    const todo = useHook.todo;
+
+    const title = todoForm.current?.todoTitle.value;
+    const description = todoForm.current?.description.value;
+
+    if (!title || !description)
+      return alert("Please complete the fields before submitting");
+
+    const createTodoItem = async () => {
+      const create = await todo.useAddTodo();
+
+      const res = await create({ title, description });
+    };
+
+    createTodoItem();
   };
 
   return (
@@ -36,9 +52,13 @@ const Home = ({
         Create new todo
       </Button>
       <Modal isOpen={open} setOpen={setOpen}>
-        <Form className="my-10 px-4">
+        <Form
+          ref={todoForm}
+          className="my-10 px-4"
+          onSubmit={(e) => createTodo(e)}
+        >
           <h2>Create a new todo</h2>
-          <Input name="title" label="Title" />
+          <Input name="todoTitle" label="Title" />
           <Input name="description" label="Description" />
           <div>
             <Button className="my-5" type="submit">

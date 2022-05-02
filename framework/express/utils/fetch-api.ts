@@ -1,14 +1,23 @@
 import { API_URL } from "../const";
 
 type Props = {
+  endPoint?: string;
   method: any;
-  options?: any;
 };
 
-const fetchApi = async ({ method, options }: Props) => {
-  const res = await fetch(API_URL!, {
+const fetchApi = async (
+  { endPoint, method }: Props,
+  input?: any | undefined
+) => {
+  const apiEndPoint = endPoint || "";
+  const res = await fetch(API_URL! + apiEndPoint, {
     method,
-    body: JSON.stringify(options),
+    credentials: "include",
+    headers: {
+      "Access-Control-Allow-Credentials": "http://localhost:3000",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(input),
   });
 
   const { data, errors } = await res.json();
