@@ -10,7 +10,7 @@ const Navbar = () => {
   const { token } = useSelector(selectUser);
   const dispatch = useDispatch();
   const router = useRouter();
-  const logout = () => {
+  const logoutHandler = () => {
     dispatch(logout());
     Cookies.remove("authToken");
     router.push("/auth/login");
@@ -27,7 +27,7 @@ const Navbar = () => {
         <div className={s.navMenu}>
           {token ? (
             <>
-              <Button onClick={logout}>Logout</Button>
+              <Button onClick={logoutHandler}>Logout</Button>
             </>
           ) : (
             <>
